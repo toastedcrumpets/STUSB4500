@@ -272,6 +272,9 @@ class Decoder(srd.Decoder):
                 self.needACK = True
             elif cmd == 'STOP':
                 self.state = 'IDLE'
+            elif cmd == "START REPEAT":
+                self.state = 'GET SLAVE ADDR'
+                self.ss_block = ss
             else:
                 self.putx([self.ANN_ERROR, ['Expected DATA WRITE or STOP', 'ERR']])
         elif self.state == 'READ REGS':
